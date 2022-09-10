@@ -1,6 +1,7 @@
 package ru.toboe512.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.toboe512.dao.UserDAO;
@@ -13,14 +14,18 @@ import java.util.List;
 public class UserServiceImp implements UserService {
     private final UserDAO userDAO;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserServiceImp(UserDAO userDAO) {
+    public UserServiceImp(UserDAO userDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
     @Override
     public void add(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.add(user);
     }
 
@@ -38,6 +43,9 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public void update(User user) {
+        if (!userDAO.getUser(user.getId()).getPassword().equals(user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userDAO.update(user);
     }
 

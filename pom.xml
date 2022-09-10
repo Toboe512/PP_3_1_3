@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ru.toboe512</groupId>
 	<artifactId>spring-boot_security</artifactId>
-	<version>1.3.3-SNAPSHOT</version>
+	<version>1.3.4-SNAPSHOT</version>
 	<name>spring-boot_security</name>
 	<description>Toboe512 project for Spring Boot</description>
 	<properties>

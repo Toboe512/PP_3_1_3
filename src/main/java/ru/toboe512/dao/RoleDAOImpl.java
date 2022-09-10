@@ -13,6 +13,7 @@ public class RoleDAOImpl implements RoleDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Override
     public Role findRoleById(Long id) {
         return entityManager.createQuery("from Role role where role.id=:id", Role.class)
@@ -22,7 +23,7 @@ public class RoleDAOImpl implements RoleDAO {
 
     @Override
     public void add(Role role) {
-        entityManager.persist(entityManager.merge(role));
+        entityManager.persist(role);
     }
 
     @Override

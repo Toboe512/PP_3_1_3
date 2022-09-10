@@ -21,7 +21,6 @@ public class InitialisationUsersTable implements ApplicationListener<Application
 
     private final UserDAO userDAO;
     private final RoleDAO roleDAO;
-
     private final PasswordEncoder passwordEncoder;
 
     @Autowired

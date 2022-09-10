@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.toboe512.models.Role;
 import ru.toboe512.models.User;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -16,7 +17,7 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public void add(User user) {
-        entityManager.persist(entityManager.merge(user));
+        entityManager.persist(user);
     }
 
     @Override
